@@ -1,4 +1,44 @@
 '''
+5A: The error here is that when k from data 2 doesn't exist in data1, the (k,v) from data 2 is not getting added to data1.
+Input: 
+3
+1 2
+2 3
+3 4
+3
+4 5
+6 7
+8 9
+
+
+5B: The edited code is added after this comment block. There was an extra indent in one else statement due to which we were not getting the desired output.
+
+5C: 
+TEST CASE 1:
+2
+1 2
+2 3
+2
+4 5
+6 7
+
+TEST CASE 2:
+2
+1 2
+2 3
+2
+2 2
+7 6
+
+TEST CASE 3:
+2
+1 2
+3 4
+2
+1 2
+5 4
+'''
+'''
 This function takes two arguments,
 data1 and data2, which contain
 key-value pairs. All key-value
@@ -10,7 +50,6 @@ in data1 and (k, v2) in data2 with a
 common key k. In this case, v1 and
 v2 may be the same, or v1 and v2 may
 be different.
-
 This function should modify only
 data1 and return a (possibly empty)
 dictionary as follows:
@@ -25,7 +64,6 @@ should be removed from data1 and the
 key-value pair (k, [v1, v2]) should
 be added to the (initially empty)
 dictionary to be returned.
-
 In this implementation, data1 is a
 dictionary and data2 is a list where
 each key-value pair in data2 is also
@@ -46,13 +84,13 @@ def uniqueUpdate(data1, data2):
             # Check if v1 != v2
             if v1 != v2:
                 # Add (k, [v1, v2])
-                # to dictionary                
+                # to dictionary
                 dupKeys[k] = [v1, v2]
                 # Remove (k, v1) from data1
                 del data1[k]
-            else:
+        else: #error was here in the indent
                 # Add (k, v2) to data1
-                data1[k] = v2
+            data1[k] = v2
     # After processing all (k, v2) in
     # data2, return the dictionary
     return dupKeys
@@ -66,7 +104,6 @@ https://tinyurl.com/...
 '''
 This part of the code reads input in
 the following format:
-
 Line 1: A positive integer n1
 representing the number of key value
 pairs in data1
@@ -81,11 +118,9 @@ Lines n1+3 to n1+n2+2: Two integers
 k and v per line representing the
 key and value (these n2 key value
 pairs are added to data2)
-
 This also prints the output in the
 following format after calling the
 uniqueUpdate function:
-
 data1
 data2 (should remain the same)
 dup (the dictionary returned)
